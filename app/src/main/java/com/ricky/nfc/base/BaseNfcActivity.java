@@ -3,6 +3,8 @@ package com.ricky.nfc.base;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.nfc.NfcAdapter;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 /**
  * Author:Created by Ricky on 2017/8/25.
@@ -24,10 +26,7 @@ public class BaseNfcActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        //此处adapter需要重新获取，否则无法获取message
-        mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
-        //一旦截获NFC消息，就会通过PendingIntent调用窗口
-        mPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()), 0);
+
     }
 
     /**
