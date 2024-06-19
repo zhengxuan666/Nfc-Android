@@ -19,6 +19,16 @@ public class BaseNfcActivity extends AppCompatActivity {
     protected NfcAdapter mNfcAdapter;
     private PendingIntent mPendingIntent;
 
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //此处adapter需要重新获取，否则无法获取message
+        mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
+        //一旦截获NFC消息，就会通过PendingIntent调用窗口
+        mPendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, getClass()), 0);
+    }
+
     /**
      * onCreat->onStart->onResume->onPause->onStop->onDestroy
      * 启动Activity，界面可见时.
